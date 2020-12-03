@@ -9,6 +9,7 @@ export default class Search extends Component {
                 email: '',
                 password: ''
             },
+            searching: false,
             results: []
         };
 
@@ -25,15 +26,20 @@ export default class Search extends Component {
 
     async handleSubmit(event) {
         event.preventDefault();
-        const { keyword } = this.state.input;
 
+        this.setState({
+            searching: true
+        });
+
+        const { keyword } = this.state.input;
         const response = await post('/search', {
             keyword
         });
 
         // console.log(await response.json());
         this.setState({
-            results: await response.json()
+            results: await response.json(),
+            searching: false
         });
     }
 
@@ -49,7 +55,9 @@ export default class Search extends Component {
                             onChange={this.handleChange}
                             placeholder="e.g. John"/>
                         <div className="input-group-append">
-                            <button type="submit" className="btn btn-primary">Search</button>
+                            <button type="submit" className="btn btn-primary" disabled={this.state.searching}>
+                                {this.state.searching ? 'Searching...' : 'Search'}
+                            </button>
                         </div>
                     </div>
                 </form>

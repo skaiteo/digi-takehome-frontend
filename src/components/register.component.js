@@ -52,6 +52,10 @@ export default class Register extends Component {
             this.setState({
                 isRegistered: true
             });
+        } else {
+            this.setState({
+                registering: false
+            })
         }
     }
  
@@ -134,9 +138,6 @@ export default class Register extends Component {
                     <button type="submit" className="btn btn-primary btn-block" disabled={this.state.registering}>
                         {this.state.isRegistered ? 'Registered!' : 'Register'}
                     </button>
-                    <p className="forgot-password text-right">
-                        Already registered? <a href="/sign-in">sign in</a>
-                    </p>
                 </form>
             </div>
         );
