@@ -1,5 +1,5 @@
 async function post(endpoint, body) {
-    const response = await fetch(`http://localhost:8000${endpoint}`, {
+    const response = await fetch(`https://digi-takehome-assignment.herokuapp.com${endpoint}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
